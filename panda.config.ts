@@ -10,37 +10,49 @@ export default defineConfig({
 	// Files to exclude
 	exclude: [],
 
-  conditions: {
-    light: '[data-color-mode=light] &',
-    dark: '[data-color-mode=dark] &',
-    pinkTheme: '[data-theme=pink] &',
-    blueTheme: '[data-theme=blue] &'
-  },
+	conditions: {},
+
+	jsxFramework: "react",
 
 	// Useful for theme customization
 	theme: {
-    semanticTokens: {
-      colors: {
-        text: {
-          value: {
-            _pinkTheme: { base: '{colors.pink.500}', _dark: '{colors.pink.300}' },
-            _blueTheme: { base: '{colors.blue.500}', _dark: '{colors.blue.300}' }
-          }
-        }
-      }
-    },
-		tokens: {
-			colors: {
-				myLight: { value: "#F0F0F0", description: "Light mode primary color." },
-				myDark: {
-					value: "rgb(41,45,50)",
-					description: "Dark mode primary color.",
+		extend: {
+			tokens: {
+				colors: {
+					light: { value: "#F0F0F0", description: "Light mode primary color." },
+					myDark: {
+						value: "rgb(41,45,50)",
+						description: "Dark mode primary color.",
+					},
+				},
+				shadows: {
+					outLight: { value: "5px 5px 5px #b6b6b6, -5px -5px 5px #ffffff" },
 				},
 			},
 		},
-		extend: {},
+	},
+
+	globalCss: {
+		body: {
+			width: { md: "breakpoint-md", lg: "breakpoint-xl" },
+			background: "light",
+			minHeight: { base: "100vh" },
+			margin: "auto",
+			// border: "2px solid",
+			// borderColor: {base: "black",sm: "red",md: "blue", lg: "green"}
+		},
+		header: {
+			background: "light",
+			height: { base: "6rem" },
+			position: "fixed",
+			top: "0",
+			zIndex: "100",
+		},
+		main: {
+			marginTop: {md: "6rem"},
+		}
 	},
 
 	// The output directory for your css system
-	outdir: "styled-system",
+	outdir: "./src/styled-system",
 });
