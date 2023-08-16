@@ -4,7 +4,7 @@
 
 | 技術スタック         |            ライブラリ・フレームワーク             |
 | :------------------- | :-----------------------------------------------: |
-| ベースフレームワーク | [Next.js 13 (app Router)](https://panda-css.com/) |
+| ベースフレームワーク | [Next.js 13 (app Router)](https://nextjs.org/docs) |
 | スタイリング         |        [Panda CSS](https://panda-css.com/)        |
 | アイコン             |  [heroicons](https://heroicons.com/)  |
 | 状態管理             |  [TanStack Query](https://tanstack.com/query/v4)  |

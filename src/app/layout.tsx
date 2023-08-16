@@ -36,8 +36,8 @@ const pages = [
 		title: "Home",
 		link: "/",
 	},
-	// {
-	// 	title: "Blog",
-	// 	link: "/blog",
-	// },
+	{
+		title: "Blog",
+		link: "/blog",
+	},
 ];
