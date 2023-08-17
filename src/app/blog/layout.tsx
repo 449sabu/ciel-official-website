@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
-import { HStack } from "@/styled-system/jsx";
+import { Stack } from "@/styled-system/jsx";
 import { css } from "@/styled-system/css";
-
-export const metadata: Metadata = {
-	title: "CIEL Stake Pool",
-	description: "CIEL Stake Pool Official Site.",
-};
+import Topics from "@/components/Topics";
 
 const BlogLayout = async({
 	children,
@@ -13,23 +8,24 @@ const BlogLayout = async({
 	children: React.ReactNode;
 }) => {
 	return (
-		<HStack>
+		<Stack direction="row" gap={6} my="5rem">
 			<div
 				className={css({
-					w: { md: "2/3" },
+					w: { md: "3/4" },
+					border: "1px solid",
 				})}
 			>
-				記事内容
         {children}
 			</div>
 			<div
 				className={css({
-					w: { md: "1/3" },
+					w: { md: "1/4" },
+					p: "2rem 0.5rem",
 				})}
 			>
-				目次など
+				<Topics />
 			</div>
-		</HStack>
+		</Stack>
 	);
 };
 

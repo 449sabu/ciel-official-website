@@ -28,7 +28,7 @@ export const fetchArticleList = async (): Promise<string[]> => {
 	const c = b.map((e: any) => {
 		return e.name;
 	});
-	console.log(c)
+	// console.log(c)
 	return c;
 };
 
