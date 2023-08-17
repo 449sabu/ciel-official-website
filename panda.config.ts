@@ -28,7 +28,22 @@ export default defineConfig({
 				shadows: {
 					outLight: { value: "5px 5px 5px #b6b6b6, -5px -5px 5px #ffffff" },
 				},
+				animations: {}
 			},
+			keyframes: {
+				spinner: {
+					'from': { transform: "rotate3d(.5,.5,.5, 360deg)" },
+          'to': { transform: 'rotate3d(0deg)' }
+				},
+				fadein: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' }
+        },
+        fadeout: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' }
+        }
+			}
 		},
 	},
 

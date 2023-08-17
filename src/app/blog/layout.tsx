@@ -7,7 +7,11 @@ export const metadata: Metadata = {
 	description: "CIEL Stake Pool Official Site.",
 };
 
-const BlogLayout = () => {
+const BlogLayout = async({
+	children,
+}: {
+	children: React.ReactNode;
+}) => {
 	return (
 		<HStack>
 			<div
@@ -16,6 +20,7 @@ const BlogLayout = () => {
 				})}
 			>
 				記事内容
+        {children}
 			</div>
 			<div
 				className={css({

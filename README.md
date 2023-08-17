@@ -8,4 +8,6 @@
 | スタイリング         |        [Panda CSS](https://panda-css.com/)        |
 | アイコン             |  [heroicons](https://heroicons.com/)  |
 | 状態管理             |  [TanStack Query](https://tanstack.com/query/v4)  |
+| MDX変換          |           [next-mdx-remote](https://github.com/hashicorp/next-mdx-remote)            |
 | Cardano API          |           [koios](https://koios.rest/)            |
+Ï

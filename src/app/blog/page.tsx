@@ -1,16 +1,18 @@
 import { NextPage } from "next";
-import Status from "@/components/Status";
-import { Center } from "@/styled-system/jsx";
-// import { fetchKoiosPoolInformation } from '@/libs/axios'
+import { VStack } from "@/styled-system/jsx";
+import { fetchArticleList } from '@/libs/github'
+import Link from "next/link";
 
 const Blog: NextPage = async () => {
-	// const pool_id = [process.env.NEXT_PUBLIC_POOL_ID || ""];
-	// const initialData = await fetchKoiosPoolInformation(pool_id);
+  const data = await fetchArticleList();
 
 	return (
 		<main>
-			Blog Page
-			<Center></Center>
+			<VStack>
+				{data.map((e,i) => (
+					<Link href={`/blog/${e}`} key={i}>{e}</Link>
+				))}
+			</VStack>
 		</main>
 	);
 };

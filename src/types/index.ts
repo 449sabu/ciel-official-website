@@ -29,3 +29,26 @@ export type PoolInformationType = {
   live_delegators: number; // Pool live delegator count
   live_saturation: number | null; // Pool live saturation (decimal format)
 };
+
+/**
+ * ブログ関係
+*/
+export type PostConfig = {
+  title: string;
+  date: string;
+  description: string | null;
+  tag: string[];
+  topics: string[] | null;
+  published: boolean;
+  published_at: Date | null;
+  image: string;
+};
+
+export type FrontMatter = {
+  [key: string]: any;
+};
+
+export type AllArticles = {
+  frontMatter: FrontMatter;
+  slug: string;
+};
