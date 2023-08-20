@@ -2,25 +2,24 @@ import { Stack } from "@/styled-system/jsx";
 import { css } from "@/styled-system/css";
 import Topics from "@/components/Topics";
 
-const BlogLayout = async({
-	children,
-}: {
-	children: React.ReactNode;
-}) => {
+const BlogLayout = async ({ children }: { children: React.ReactNode }) => {
 	return (
-		<Stack direction="row" gap={6} my="5rem">
+		<Stack
+			direction={{ base: "column", md: "row" }}
+			gap={6}
+			my="5rem"
+			p={{ base: "1rem", md: "2rem" }}
+		>
 			<div
 				className={css({
 					w: { md: "3/4" },
-					border: "1px solid",
 				})}
 			>
-        {children}
+				{children}
 			</div>
 			<div
 				className={css({
 					w: { md: "1/4" },
-					p: "2rem 0.5rem",
 				})}
 			>
 				<Topics />

@@ -1,12 +1,18 @@
 "use client";
 import { useState } from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { useStore } from "@/libs/zustand";
 
 const Provider = ({ children }: { children: React.ReactNode }) => {
-  const [queryClient] = useState(() => new QueryClient())
+	const [queryClient] = useState(() => new QueryClient());
+	const theme = useStore((state) => state.theme);
 
 	return (
-		<QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+		<QueryClientProvider client={queryClient}>
+			<body data-color-mode={theme}>{children}</body>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
 	);
 };
 

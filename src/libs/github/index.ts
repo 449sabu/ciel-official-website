@@ -11,10 +11,10 @@ export const octokit = new Octokit({
 
 export const fetchArticle = async () => {
 	const repo = await octokit.request(
-		`GET /repos/449sabu/zenn-posts/contents/articles`,
+		`GET /repos/449sabu/${process.env.GITHUB_REPO}/contents/articles`,
 		{
 			owner: "449sabu",
-			repo: "zenn-posts",
+			repo: process.env.GITHUB_REPO,
 		}
 	);
 	return repo.data;
@@ -34,7 +34,7 @@ export const fetchArticleList = async (): Promise<string[]> => {
 
 export const fetchMainText = async (slug: string) => {
 	const res = await axios.get(
-		`https://raw.githubusercontent.com/449sabu/zenn-posts/main/articles/${slug}`
+		`https://raw.githubusercontent.com/449sabu/${process.env.GITHUB_REPO}/main/articles/${slug}`
 	);
 	return res.data;
 };

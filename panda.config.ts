@@ -10,7 +10,10 @@ export default defineConfig({
 	// Files to exclude
 	exclude: [],
 
-	conditions: {},
+	conditions: {
+		light: "[data-color-mode=light] &",
+		dark: "[data-color-mode=dark] &",
+	},
 
 	jsxFramework: "react",
 
@@ -19,53 +22,71 @@ export default defineConfig({
 		extend: {
 			tokens: {
 				colors: {
-					light: { value: "#F0F0F0", description: "Light mode primary color." },
-					myDark: {
+					light: { value: "#F0F0F0", description: "Light mode base color." },
+					dark: {
 						value: "rgb(41,45,50)",
-						description: "Dark mode primary color.",
+						description: "Dark mode base color.",
+					},
+				},
+			},
+			semanticTokens: {
+				colors: {
+					theme: {
+						value: {
+							_light: { base: "{colors.light}" },
+							_dark: { _dark: "{colors.dark}" },
+						},
+					},
+					primary: {
+						value: {
+							_light: { base: "{colors.neutral.950}" },
+							_dark: { _dark: "{colors.neutral.50}" },
+						},
+					},
+					secondary: {
+						value: {
+							_light: { base: "{colors.teal.500}" },
+							_dark: { _dark: "{colors.orange.500}" },
+						},
 					},
 				},
 				shadows: {
-					outLight: { value: "5px 5px 5px #b6b6b6, -5px -5px 5px #ffffff" },
+					inShadows: {
+						value: {
+							_light: { base: "inset 6px 6px 5px #d3d3d3, inset -6px -6px 5px #ffffff" },
+							_dark: { _dark: "inset 5px 5px 6px #1b1e22, inset -5px -5px 6px #373c43" },
+						},
+					},
+					outShadows: {
+						value: {
+							_light: { base: "5px 5px 5px #b6b6b6, -5px -5px 5px #ffffff" },
+							_dark: { _dark: "5px 5px 6px #1c1f22, -5px -5px 6px #363b42" },
+						},
+					},
 				},
-				animations: {}
 			},
-			keyframes: {
-				spinner: {
-					'from': { transform: "rotate3d(.5,.5,.5, 360deg)" },
-          'to': { transform: 'rotate3d(0deg)' }
-				},
-				fadein: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' }
-        },
-        fadeout: {
-          '0%': { opacity: '1' },
-          '100%': { opacity: '0' }
-        }
-			}
 		},
 	},
 
 	globalCss: {
 		body: {
 			width: { md: "breakpoint-md", lg: "breakpoint-xl" },
-			background: "light",
+			background: "theme",
+			color: "primary",
 			minHeight: { base: "100vh" },
 			margin: "auto",
-			// border: "2px solid",
-			// borderColor: {base: "black",sm: "red",md: "blue", lg: "green"}
 		},
 		header: {
-			background: "light",
-			height: { base: "6rem" },
+			background: "theme",
+			color: "primary",
+			height: { base: "4rem", md: "6rem" },
 			position: "fixed",
 			top: "0",
 			zIndex: "100",
 		},
 		main: {
-			marginTop: {md: "6rem"},
-		}
+			marginTop: { md: "6rem" },
+		},
 	},
 
 	// The output directory for your css system

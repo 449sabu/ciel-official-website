@@ -1,8 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import Providers from "@/app/providers";
-import Navigation from "@/components//Navigation";
-import Footer from '@/components/Footer'
+import { Navigation, Footer } from "@/components";
 
 export const metadata: Metadata = {
 	title: "CIEL Stake Pool",
@@ -16,17 +15,15 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body>
+			<Providers>
 				<header>
 					<Navigation pages={pages} />
 				</header>
-				<Providers>
-					<main>{children}</main>
-				</Providers>
+				<main>{children}</main>
 				<footer>
-				<Footer />
+					<Footer />
 				</footer>
-			</body>
+			</Providers>
 		</html>
 	);
 }

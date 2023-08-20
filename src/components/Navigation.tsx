@@ -2,6 +2,7 @@ import Link from "next/link";
 import { css } from "@/styled-system/css";
 import { Flex } from "@/styled-system/jsx";
 import { Box } from "@/recipes/box.css";
+import { ColorModeButton } from '@/components'
 
 type NavigationProps = {
 	pages: {
@@ -16,7 +17,7 @@ const index = ({ pages }: NavigationProps) => {
 			<Flex
 				className={css({
 					height: { base: "4rem" },
-					width: { base: "90vw",md:"breakpoint-md",lg: "breakpoint-xl" },
+					width: { base: "100vw",md:"breakpoint-md",lg: "breakpoint-xl" },
 					margin: { base: "auto", md: "2rem 0" },
 					padding: { base: "1rem" },
 				})}
@@ -30,6 +31,7 @@ const index = ({ pages }: NavigationProps) => {
 						{e.title}
 					</Link>
 				))}
+				<ColorModeButton />
 			</Flex>
 		</Box>
 	);

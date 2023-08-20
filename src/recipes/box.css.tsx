@@ -6,9 +6,9 @@ type PageProps = {
 
 export const box = cva({
   base: {
-    bgColor: "light",
+    bgColor: "theme",
     borderRadius: "10px",
-    shadow: "outLight",
+    shadow: "outShadows",
     alignItems: "center",
   },
 });

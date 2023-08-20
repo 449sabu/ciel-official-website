@@ -1,52 +1,68 @@
 import { NextPage } from "next";
 import Link from "next/link";
-import { compileMDX } from "next-mdx-remote/rsc";
-import { VStack } from "@/styled-system/jsx";
+import Image from "next/image";
+import { VStack, HStack, Stack } from "@/styled-system/jsx";
 import { css } from "@/styled-system/css";
 import { fetchArticleList, fetchMainText } from "@/libs/github";
-
-interface FrontMatter {
-	title: string;
-	topics: string[];
-	published: boolean;
-}
+import Badge from "@/components/Badge";
+import { Compiler } from '@/libs/mdx'
 
 const Blog: NextPage = async () => {
 	const slugList = await fetchArticleList();
 	const contents = await Promise.all(
-		slugList.map(async (data) => {
-			const mainText = await fetchMainText(data);
-			const { frontmatter } = await compileMDX<FrontMatter>({
-				source: mainText,
-				options: { parseFrontmatter: true },
-			});
+		slugList.map(async (slug) => {
+			const mainText = await fetchMainText(slug);
+			const { frontmatter } = await Compiler(mainText)
+
 			return {
-				slug: data,
-				frontmatter: frontmatter,
+				slug,
+				frontmatter,
 			};
 		})
 	);
 
-	console.log(contents);
-
 	return (
-		<main>
-			<VStack>
-				{contents.map((content, i) => (
-					<Link
-						href={`/blog/${content.slug}.md`}
-						key={i}
-						className={css({
-							h: { md: "6rem" },
-							w: "100%",
-							border: "1px solid",
-						})}
+		<VStack>
+			{contents.map((content, i) => (
+				<Link
+					href={`/blog/${content.slug}`}
+					key={i}
+					className={css({
+						h: { md: "10rem" },
+						w: "100%",
+					})}
+				>
+					<Stack
+						direction={{ base: "column", md: "row" }}
+						alignItems="start"
+						gap="6"
 					>
-						{content.frontmatter.title}
-					</Link>
-				))}
-			</VStack>
-		</main>
+						<Image
+							src={`https://raw.githubusercontent.com/449sabu/${process.env.GITHUB_REPO}/main/images/ogp/${content.frontmatter.image}`}
+							width={1200}
+							height={630}
+							alt="ogp image"
+							className={css({
+								h: { md: "10rem" },
+								w: "26rem",
+								objectFit: "contain",
+								borderRadius: "xl",
+							})}
+						/>
+						<VStack alignItems="start" py={{ md: "1rem" }} w="100%">
+							<p className={css({ fontSize: "xl" })}>
+								{content.frontmatter.title}
+							</p>
+							<HStack>
+								{content.frontmatter.topics.map((topic, index) => (
+									<Badge text={topic} key={index} />
+								))}
+							</HStack>
+						</VStack>
+					</Stack>
+				</Link>
+			))}
+		</VStack>
 	);
 };
 
