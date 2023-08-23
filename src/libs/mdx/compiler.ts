@@ -6,7 +6,8 @@ import rehypeMermaid from 'rehype-mermaidjs';
 import rehypeSlug from 'rehype-slug';
 import { mdxCustomComponents } from "@/libs/mdx/mdxCustomComponents";
 import { remarkLinkCard, linkCardHandler } from "@/libs/unified/linkcard";
-// import { print } from "../unified";
+import { remarkZennCode } from "@/libs/unified/zenn-code";
+import { print } from "@/libs/unified/mdast-test";
 import type { Options } from "rehype-pretty-code";
 
 export interface FrontMatter {
@@ -28,22 +29,23 @@ export const Compiler = async (source: string) => {
 		options: {
 			mdxOptions: {
 				remarkPlugins: [
+					// remarkZennCode,
 					remarkBreaks,
 					remarkLinkCard,
 					remarkGfm,
-					// print
+					print
 				],
 				rehypePlugins: [
 					rehypeSlug,
-					[
-						rehypeMermaid,
+					// [
+						// rehypeMermaid,
 						// {
 						// 	strategy: 'inline-svg',
 						// 	mermaidConfig: {
 						// 		fontFamily: 'sans-serif, monospace',
 						// 	},
 						// },
-					],
+					// ],
 					[rehypePrettyCode, rehypePrettyCodeOptions]],
 				remarkRehypeOptions: {
 					handlers: {

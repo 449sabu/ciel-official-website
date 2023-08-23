@@ -11,7 +11,7 @@ import {
 	isLinkCard,
 	isEmbedYoutube,
 	isEmbedTwitter,
-} from "@/libs/unified";
+} from "@/libs/unified/mdast-test";
 
 export interface LinkCard extends Literal {
 	type: "linkCard";
