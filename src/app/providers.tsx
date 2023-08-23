@@ -10,7 +10,7 @@ const Provider = ({ children }: { children: React.ReactNode }) => {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<body data-color-mode={theme}>{children}</body>
+			<body data-theme={theme}>{children}</body>
 			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	);

@@ -49,6 +49,6 @@ export type FrontMatter = {
 };
 
 export type AllArticles = {
-  frontMatter: FrontMatter;
+  frontmatter: FrontMatter;
   slug: string;
 };

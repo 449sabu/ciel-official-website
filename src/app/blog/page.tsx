@@ -3,23 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 import { VStack, HStack, Stack } from "@/styled-system/jsx";
 import { css } from "@/styled-system/css";
-import { fetchArticleList, fetchMainText } from "@/libs/github";
+import { getAllArticles } from "@/libs/github";
 import Badge from "@/components/Badge";
-import { Compiler } from '@/libs/mdx'
 
 const Blog: NextPage = async () => {
-	const slugList = await fetchArticleList();
-	const contents = await Promise.all(
-		slugList.map(async (slug) => {
-			const mainText = await fetchMainText(slug);
-			const { frontmatter } = await Compiler(mainText)
-
-			return {
-				slug,
-				frontmatter,
-			};
-		})
-	);
+	const contents = await getAllArticles();
 
 	return (
 		<VStack>

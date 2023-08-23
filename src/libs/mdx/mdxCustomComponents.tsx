@@ -1,8 +1,18 @@
 import { css } from "@/styled-system/css";
+import LinkCard from "@/components/LinkCard";
+import type { LinkCardProps } from "@/components/LinkCard";
 
 export const mdxCustomComponents = {
-  h1: (props: any) => (
-		<h1 {...props} className={css({ fontSize: "3xl", my: "1rem" })} />
+	h1: (props: any) => (
+		<h1
+			{...props}
+			className={css({
+				fontSize: "3xl",
+				my: "1rem",
+				bg: "secondary",
+				p: "0.5rem 1rem",
+			})}
+		/>
 	),
 	h2: (props: any) => (
 		<h2
@@ -17,13 +27,17 @@ export const mdxCustomComponents = {
 		/>
 	),
 	a: (props: any) => (
-			<a
-				{...props}
-				className={css({
-					color: "secondary",
-					my: "1rem",
-					textDecoration: "underline",
-				})}
-			/>
+		<a
+			{...props}
+			className={css({
+				color: "secondary",
+				my: "1rem",
+				textDecoration: "underline",
+			})}
+		/>
 	),
-}
+	pre: (props: any) => (
+		<pre {...props} className={css({ p: "1rem",my: "1rem", borderRadius: "xl" })} />
+	),
+	linkcard: (props: LinkCardProps) => <LinkCard {...props} />,
+};

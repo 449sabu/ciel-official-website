@@ -11,8 +11,8 @@ export default defineConfig({
 	exclude: [],
 
 	conditions: {
-		light: "[data-color-mode=light] &",
-		dark: "[data-color-mode=dark] &",
+		light: "[data-theme=light] &",
+		dark: "[data-theme=dark] &",
 	},
 
 	jsxFramework: "react",

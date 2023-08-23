@@ -1,14 +1,13 @@
-import { fetchArticle, fetchMainText } from "@/libs/github";
+import { fetchMainText, fetchArticleSlugs } from "@/libs/github";
 import { css } from "@/styled-system/css";
 import { Compiler } from "@/libs/mdx";
 
 export async function generateStaticParams() {
-	const repo = await fetchArticle();
-	return repo.filter((data: any) => {
-		if (data.name !== ".keep")
-			return {
-				slug: data.name,
-			};
+	const slugs = await fetchArticleSlugs();
+	return slugs.map((slug) => {
+		return {
+			slug: slug,
+		};
 	});
 }
 
